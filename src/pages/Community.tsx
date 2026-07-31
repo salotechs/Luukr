@@ -143,11 +143,7 @@ export const Community: React.FC = () => {
                 9. Contact Trust & Safety
               </h2>
               <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
-                For safety concerns or to report violations: trust-safety@luukr.com
-              </p>
-
-              <p className={`text-base leading-relaxed mt-8 ${isDark ? 'text-slate-400' : 'text-gray-600'}`}>
-                © 2026 Luukr Global Inc. All rights reserved.
+                For safety concerns or to report violations: support@luukr.com
               </p>
             </div>
           </div>

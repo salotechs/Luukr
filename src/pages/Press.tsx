@@ -90,7 +90,7 @@ export const Press: React.FC = () => {
               </h2>
               <div className={`space-y-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                 <p className="font-semibold">Luukr Press Team</p>
-                <p>Email: <a href="mailto:press@luukr.com" className="text-pink-500 hover:text-pink-400 transition-colors">press@luukr.com</a></p>
+                <p>Email: <a href="mailto:support@luukr.com" className="text-pink-500 hover:text-pink-400 transition-colors">support@luukr.com</a></p>
                 <p>For media inquiries, interviews, and partnership opportunities, please reach out to our press team.</p>
               </div>
             </div>

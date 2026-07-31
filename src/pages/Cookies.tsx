@@ -102,7 +102,7 @@ export const Cookies: React.FC = () => {
                 7. Contact Us
               </h2>
               <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
-                For questions about our cookie practices, please contact: privacy@luukr.com
+                For questions about our cookie practices, please contact: support@luukr.com
               </p>
             </div>
           </div>

@@ -145,7 +145,7 @@ export const Safety: React.FC = () => {
                 Report Safety Issues
               </h2>
               <p className={`text-base leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                If you encounter any suspicious activity, harassment, or safety concerns, please report it immediately to our Trust & Safety team. Your reports help us maintain a secure community for everyone.
+                If you encounter any suspicious activity, harassment, or safety concerns, please report it immediately to our Trust & Safety team. Your reports help us maintain a secure community for everyone. Contact us at <a href="mailto:support@luukr.com" className="text-pink-500 hover:text-pink-400 transition-colors">support@luukr.com</a>.
               </p>
             </section>
           </div>
