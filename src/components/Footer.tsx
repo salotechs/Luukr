@@ -47,21 +47,21 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
                 </Link>
               </li>
               <li>
-                <a 
-                  href="#careers"
+                <Link 
+                  to="/careers"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left inline-flex items-center gap-1.5 flex-wrap"
                 >
                   <span>Careers</span>
                   <span className="px-1.5 py-0.5 text-[9px] bg-pink-500 text-white rounded font-bold">HIRING</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#press"
+                <Link 
+                  to="/press"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Press & Media Kit
-                </a>
+                </Link>
               </li>
               <li>
                 <Link 

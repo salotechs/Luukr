@@ -15,10 +15,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
   const isDark = theme === 'dark';
 
   return (
-    <header className={`sticky top-0 z-50 w-full px-4 sm:px-8 lg:px-12 transition-all duration-200 backdrop-blur-md ${
+    <header className={`sticky top-0 z-50 w-full px-4 sm:px-8 lg:px-12 transition-all duration-200 ${
       isDark 
-        ? 'bg-[#0B0F19]/85 border-b border-slate-800/80 text-white glass-nav shadow-lg shadow-black/40' 
-        : 'bg-white/85 border-b border-slate-200/80 text-slate-900 glass-nav shadow-md shadow-slate-200/60'
+        ? 'bg-[#0B0F19] border-b border-slate-800/80 text-white glass-nav shadow-lg shadow-black/40' 
+        : 'bg-white border-b border-slate-200/80 text-slate-900 glass-nav shadow-md shadow-slate-200/60'
     }`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16 sm:h-20 px-1">
         {/* Brand Logo */}

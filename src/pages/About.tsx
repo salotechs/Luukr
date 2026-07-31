@@ -114,12 +114,7 @@ export const About: React.FC = () => {
               </div>
             </section>
 
-            {/* Company Info */}
-            <section className={`pt-8 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
-              <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                Luukr Global Inc. © 2026. All rights reserved.
-              </p>
-            </section>
+
           </div>
         </article>
       </main>
