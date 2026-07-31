@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Compass, Shield, Info, ArrowRight, Menu, X, Sparkles, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { LuukrLogo } from './LuukrLogo';
 
 interface NavbarProps {
   onLaunchWeb?: () => void;
-  onScrollToSection?: (section: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb, onScrollToSection }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -83,9 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb, onScrollToSection }
               ? 'bg-[#111827] border-slate-800 text-white shadow-black/80' 
               : 'bg-white border-slate-200 text-slate-900 shadow-slate-300/50'
           }`}>
-            <div className={`pb-3 border-b ${isDark ? 'border-slate-800' : 'border-slate-100'}`}>
-              <span className="text-xs font-bold uppercase tracking-wider text-pink-500">Navigation</span>
-            </div>
+
 
             {onLaunchWeb && (
               <button
@@ -101,48 +99,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb, onScrollToSection }
               </button>
             )}
 
-            <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                onScrollToSection?.('about');
-              }}
+            <Link
+              to="/about"
+              onClick={() => setIsMenuOpen(false)}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
               }`}
             >
               <Info className="w-4 h-4 text-slate-400" />
               <span>About Luukr</span>
-            </button>
+            </Link>
 
-            <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                onScrollToSection?.('safety');
-              }}
+            <Link
+              to="/safety"
+              onClick={() => setIsMenuOpen(false)}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
               }`}
             >
               <Shield className="w-4 h-4 text-slate-400" />
               <span>Safety & Security</span>
-            </button>
+            </Link>
 
-            <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                onScrollToSection?.('mobile');
-              }}
+            <Link
+              to="/mobile"
+              onClick={() => setIsMenuOpen(false)}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
               }`}
             >
               <Compass className="w-4 h-4 text-slate-400" />
               <span>Get Mobile App</span>
-            </button>
+            </Link>
 
-            <div className="pt-2 text-center">
-              <p className="text-[11px] text-slate-500">Luukr Global Inc. © 2026. All rights reserved.</p>
-            </div>
+
           </div>
         </>
       )}

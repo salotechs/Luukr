@@ -27,7 +27,5 @@ export interface ChatMessage {
   timestamp: string;
 }
 
-export type ModalType = 'about' | 'safety' | 'mobile' | null;
-
 export type ThemeMode = 'dark' | 'light';
 

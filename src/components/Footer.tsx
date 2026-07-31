@@ -1,15 +1,14 @@
 import React from 'react';
-import { ModalType } from '../types';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon, Facebook, Instagram } from 'lucide-react';
 import { LuukrLogo } from './LuukrLogo';
 
 interface FooterProps {
   onLaunchWeb?: () => void;
-  onScrollToSection?: (section: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onScrollToSection }) => {
+export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -40,12 +39,12 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToSection }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <button 
-                  onClick={() => onScrollToSection?.('about')} 
+                <Link 
+                  to="/about" 
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   About Luukr
-                </button>
+                </Link>
               </li>
               <li>
                 <a 
@@ -65,12 +64,12 @@ export const Footer: React.FC<FooterProps> = ({ onScrollToSection }) => {
                 </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onScrollToSection?.('safety')} 
+                <Link 
+                  to="/safety" 
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Trust & Safety
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
