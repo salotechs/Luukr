@@ -1,0 +1,8 @@
+{
+  "name": "Remix Luukr",
+  "description": "Discover, connect, and swipe people, homes, cars, clothes, and chat in real-time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

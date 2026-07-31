@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .doodle-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.12;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .dark .doodle-bg {
+    opacity: 0.08;
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .pink-gradient {
+    background: linear-gradient(135deg, #FF1E8D 0%, #E419D3 100%);
+  }
+
+  .pink-gradient-glow {
+    background: linear-gradient(135deg, #FF1E8D 0%, #E419D3 100%);
+    box-shadow: 0 8px 25px -4px rgba(255, 30, 141, 0.45);
+  }
+
+  .main-gradient-text,
+  .pink-gradient-text {
+    background: linear-gradient(135deg, #FF1E8D 0%, #E419D3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Sharp non-blurring icon button transform styles */
+  .crisp-btn {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  /* Custom scrollbar hiding */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Mask fade utility for sliding button marquees / carousels */
+  .mask-fade {
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 12%, rgba(0, 0, 0, 1) 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 12%, rgba(0, 0, 0, 1) 88%, transparent 100%);
+  }
+
+  .mask-fade-wide {
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
+  }
+
+  @keyframes marqueeLeft {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marqueeRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+
+  .animate-marquee-left {
+    display: flex;
+    width: max-content;
+    animation: marqueeLeft 25s linear infinite;
+  }
+
+  .animate-marquee-right {
+    display: flex;
+    width: max-content;
+    animation: marqueeRight 25s linear infinite;
+  }
+
+  @keyframes shake-attention {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    2%, 10% { transform: translate(-4px, 0) rotate(-2deg); }
+    4%, 12% { transform: translate(4px, 0) rotate(2deg); }
+    6%, 14% { transform: translate(-3px, 0) rotate(-1.5deg); }
+    8%, 16% { transform: translate(3px, 0) rotate(1.5deg); }
+    18% { transform: translate(0, 0) rotate(0deg); }
+  }
+
+  .animate-shake {
+    animation: shake-attention 3.5s ease-in-out infinite;
+  }
+}
+
