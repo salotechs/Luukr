@@ -11,6 +11,7 @@ import { Cookies } from './pages/Cookies';
 import { Community } from './pages/Community';
 import { Careers } from './pages/Careers';
 import { Press } from './pages/Press';
+import { Contact } from './pages/Contact';
 
 export default function App() {
   const { theme } = useTheme();
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/safety" element={<Safety />} />
         <Route path="/mobile" element={<Mobile />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/press" element={<Press />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />

@@ -40,7 +40,8 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
             <ul className="space-y-2 text-xs font-medium">
               <li>
                 <Link 
-                  to="/about" 
+                  to="/about"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   About Luukr
@@ -49,6 +50,7 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               <li>
                 <Link 
                   to="/careers"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left inline-flex items-center gap-1.5 flex-wrap"
                 >
                   <span>Careers</span>
@@ -57,7 +59,17 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               </li>
               <li>
                 <Link 
+                  to="/contact"
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="hover:text-pink-500 transition-colors cursor-pointer text-left"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link 
                   to="/press"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Press & Media Kit
@@ -65,7 +77,8 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               </li>
               <li>
                 <Link 
-                  to="/safety" 
+                  to="/safety"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Trust & Safety
@@ -83,6 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               <li>
                 <Link 
                   to="/privacy"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
@@ -91,6 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               <li>
                 <Link 
                   to="/terms"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Terms of Service
@@ -99,6 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               <li>
                 <Link 
                   to="/cookies"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Cookie Policy
@@ -107,6 +123,7 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
               <li>
                 <Link 
                   to="/community"
+                  onClick={() => window.scrollTo(0, 0)}
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Community Guidelines

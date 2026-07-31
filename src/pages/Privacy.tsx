@@ -89,14 +89,14 @@ export const Privacy: React.FC = () => {
                 5. Your Rights
               </h2>
               <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
-                You have the right to access, correct, or delete your personal data. You may also opt-out of certain communications and data processing activities. For privacy concerns, contact our Privacy Team at privacy@luukr.com.
+                You have the right to access, correct, or delete your personal data. You may also opt-out of certain communications and data processing activities. For privacy concerns, contact us at support@luukr.com.
               </p>
 
               <h2 className={`text-2xl font-bold mt-8 mb-4 ${isDark ? 'text-white' : 'text-black'}`}>
                 6. Contact Us
               </h2>
               <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
-                For privacy-related questions or requests, please contact: privacy@luukr.com
+                For privacy-related questions or requests, please contact: support@luukr.com
               </p>
             </div>
           </div>
