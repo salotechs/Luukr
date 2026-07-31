@@ -24,6 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
         {/* Brand Logo */}
         <Link
           to="/"
+          onClick={() => window.scrollTo(0, 0)}
           className="flex items-center gap-2 cursor-pointer select-none group h-full py-1"
         >
           <LuukrLogo className="h-12 sm:h-16 max-h-full w-auto object-contain group-hover:scale-105 transition-transform" />
@@ -101,7 +102,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
 
             <Link
               to="/about"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
               }`}
@@ -112,7 +116,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
 
             <Link
               to="/safety"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
               }`}
@@ -123,7 +130,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
 
             <Link
               to="/mobile"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                window.scrollTo(0, 0);
+              }}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
               }`}

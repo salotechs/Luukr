@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Briefcase, Users, Heart, Zap, Send } from 'lucide-react';
+import { Send, Mail } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Navbar } from '../components/Navbar';
@@ -60,60 +60,27 @@ const COUNTRY_CODES = [
   { name: 'Peru', code: '+51' }
 ];
 
-export const Careers: React.FC = () => {
+export const Contact: React.FC = () => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    position: '',
     countryCode: '+1',
     phone: '',
+    subject: '',
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
 
   useDocumentTitle(
-    'Careers at Luukr - Join Our Team',
-    'Join the Luukr team and help us build the world\'s most trusted marketplace for luxury listings and meaningful connections.'
+    'Contact Luukr - Get in Touch',
+    'Have questions or feedback? Contact the Luukr team. We\'d love to hear from you!'
   );
 
   const handleLaunchWeb = () => {
     window.location.href = 'https://app.luukr.com';
   };
-
-  const openings = [
-    {
-      title: 'Senior Backend Engineer',
-      location: 'Remote',
-      type: 'Full-time'
-    },
-    {
-      title: 'Product Manager',
-      location: 'Remote',
-      type: 'Full-time'
-    },
-    {
-      title: 'Full Stack Engineer',
-      location: 'Remote',
-      type: 'Full-time'
-    },
-    {
-      title: 'Design Lead',
-      location: 'Remote',
-      type: 'Full-time'
-    },
-    {
-      title: 'Community Manager',
-      location: 'Remote',
-      type: 'Full-time'
-    },
-    {
-      title: 'Data Analyst',
-      location: 'Remote',
-      type: 'Full-time'
-    }
-  ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -130,9 +97,9 @@ export const Careers: React.FC = () => {
       setFormData({
         fullName: '',
         email: '',
-        position: '',
         countryCode: '+1',
         phone: '',
+        subject: '',
         message: ''
       });
       setSubmitted(false);
@@ -154,78 +121,49 @@ export const Careers: React.FC = () => {
             <h1 className={`text-4xl sm:text-5xl md:text-6xl font-black tracking-tight ${
               isDark ? 'text-white' : 'text-slate-950'
             }`}>
-              Careers at Luukr
+              Get in Touch
             </h1>
             <p className={`text-lg font-semibold max-w-2xl ${
               isDark ? 'text-slate-300' : 'text-slate-700'
             }`}>
-              Join a global team building the future of luxury marketplace discovery and social networking.
+              Have a question or feedback? We&apos;d love to hear from you. Reach out to us anytime.
             </p>
           </div>
 
-          {/* Why Join Section */}
-          <section className="mb-12 space-y-6">
-            <h2 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Why Join Luukr?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className={`p-6 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                <Heart className="w-8 h-8 text-pink-500 mb-3" />
-                <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Meaningful Impact
-                </h3>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Build products that connect people with high-value experiences and create lasting relationships.
-                </p>
-              </div>
-
-              <div className={`p-6 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                <Users className="w-8 h-8 text-pink-500 mb-3" />
-                <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Global Team
-                </h3>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Collaborate with talented individuals from around the world in a diverse, inclusive environment.
-                </p>
-              </div>
-
-              <div className={`p-6 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                <Briefcase className="w-8 h-8 text-pink-500 mb-3" />
-                <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Growth Opportunities
-                </h3>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Grow your skills and advance your career in a fast-paced, innovative company.
-                </p>
-              </div>
-
-              <div className={`p-6 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                <Zap className="w-8 h-8 text-pink-500 mb-3" />
-                <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                  Competitive Benefits
-                </h3>
-                <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                  We offer competitive salaries, equity, health insurance, and flexible work arrangements.
-                </p>
-              </div>
+          {/* Support Email */}
+          <div className={`mb-12 p-6 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
+            <div className="flex items-center gap-3 mb-3">
+              <Mail className="w-6 h-6 text-pink-500" />
+              <h2 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                Email Support
+              </h2>
             </div>
-          </section>
+            <p className={`text-base ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              For support inquiries, please email us at{' '}
+              <a 
+                href="mailto:support@luukr.com" 
+                className="text-pink-500 hover:text-pink-400 font-semibold transition-colors"
+              >
+                support@luukr.com
+              </a>
+            </p>
+          </div>
 
-          {/* Application Form */}
-          <section className="mb-12 space-y-6">
+          {/* Contact Form */}
+          <section className="space-y-6">
             <div>
               <h2 className={`text-3xl font-bold mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                Join Our Team
+                Send us a Message
               </h2>
               <p className={`text-base ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                Find a role below and submit your application. We review all qualified candidates.
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
               </p>
             </div>
 
             {submitted && (
               <div className={`p-4 rounded-lg ${isDark ? 'bg-emerald-950/40 border border-emerald-800' : 'bg-emerald-50 border border-emerald-200'}`}>
                 <p className={`text-sm font-semibold ${isDark ? 'text-emerald-300' : 'text-emerald-900'}`}>
-                  Thank you! We've received your application and will review it shortly.
+                  Thank you! We&apos;ve received your message and will get back to you soon.
                 </p>
               </div>
             )}
@@ -272,30 +210,6 @@ export const Careers: React.FC = () => {
 
                 <div>
                   <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                    Position *
-                  </label>
-                  <select
-                    name="position"
-                    value={formData.position}
-                    onChange={handleChange}
-                    required
-                    className={`w-full px-4 py-3 rounded-lg border transition-colors ${
-                      isDark
-                        ? 'bg-slate-900 border-slate-800 text-white focus:border-pink-500 focus:outline-none'
-                        : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-pink-500 focus:outline-none'
-                    }`}
-                  >
-                    <option value="">Select a position</option>
-                    {openings.map((job, index) => (
-                      <option key={index} value={job.title}>
-                        {job.title} - {job.location}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                     Phone Number
                   </label>
                   <div className="flex gap-2">
@@ -329,11 +243,30 @@ export const Careers: React.FC = () => {
                     />
                   </div>
                 </div>
+
+                <div>
+                  <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className={`w-full px-4 py-3 rounded-lg border transition-colors ${
+                      isDark
+                        ? 'bg-slate-900 border-slate-800 text-white placeholder-slate-500 focus:border-pink-500 focus:outline-none'
+                        : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none'
+                    }`}
+                    placeholder="How can we help?"
+                  />
+                </div>
               </div>
 
               <div>
                 <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                  Message / Cover Letter *
+                  Message *
                 </label>
                 <textarea
                   name="message"
@@ -346,7 +279,7 @@ export const Careers: React.FC = () => {
                       ? 'bg-slate-900 border-slate-800 text-white placeholder-slate-500 focus:border-pink-500 focus:outline-none'
                       : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none'
                   }`}
-                  placeholder="Tell us about yourself and why you'd like to join Luukr..."
+                  placeholder="Tell us what's on your mind..."
                 />
               </div>
 
@@ -356,26 +289,9 @@ export const Careers: React.FC = () => {
                 className="w-full pink-gradient-glow text-white font-bold py-3 px-6 rounded-lg transition-all hover:shadow-lg active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 <Send className="w-5 h-5" />
-                Submit Application
+                Send Message
               </button>
             </form>
-
-
-          </section>
-
-          {/* Culture Section */}
-          <section className="space-y-6">
-            <h2 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              Our Culture
-            </h2>
-            <div className={`p-8 rounded-lg border ${isDark ? 'bg-slate-900 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-              <p className={`text-base leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                At Luukr, we believe in building a culture that values innovation, collaboration, and integrity. We're committed to fostering an environment where every team member can thrive, grow, and make a meaningful impact. We celebrate diversity, encourage creative thinking, and support each other in achieving our goals.
-              </p>
-              <p className={`text-base leading-relaxed mt-4 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                If you're passionate about technology, user experience, and building products that matter, we'd love to hear from you. Send your resume and a brief note about why you're interested in joining Luukr to careers@luukr.com.
-              </p>
-            </div>
           </section>
         </article>
       </main>
