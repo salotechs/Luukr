@@ -102,35 +102,37 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   };
 
   return (
-    <div className="relative flex items-stretch gap-3">
-      {/* Main input button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center justify-between gap-3 px-4 py-3 rounded-lg border-2 transition-all text-left min-w-fit ${
-          isDark
-            ? 'bg-slate-900 border-slate-800 text-white hover:border-pink-500 focus:border-pink-500'
-            : 'bg-slate-50 border-slate-200 text-slate-900 hover:border-pink-500 focus:border-pink-500'
-        }`}
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-lg">{selectedCountry.flag}</span>
-          <span className="font-semibold whitespace-nowrap">{selectedCountry.code}</span>
-        </div>
-        <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
+    <div className="relative w-full">
+      <div className="flex items-stretch gap-2 sm:gap-3">
+        {/* Main input button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`flex items-center justify-between gap-2 px-3 sm:px-4 py-3 rounded-lg border-2 transition-all text-left whitespace-nowrap flex-shrink-0 ${
+            isDark
+              ? 'bg-slate-900 border-slate-800 text-white hover:border-pink-500 focus:border-pink-500'
+              : 'bg-slate-50 border-slate-200 text-slate-900 hover:border-pink-500 focus:border-pink-500'
+          }`}
+        >
+          <div className="flex items-center gap-1 sm:gap-2">
+            <span className="text-lg">{selectedCountry.flag}</span>
+            <span className="font-semibold text-sm sm:text-base">{selectedCountry.code}</span>
+          </div>
+          <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform flex-shrink-0 ml-1`} />
+        </button>
 
-      {/* Phone input */}
-      <input
-        type="tel"
-        value={phone}
-        onChange={(e) => onPhoneChange(e.target.value)}
-        placeholder="Enter your phone number"
-        className={`flex-1 px-4 py-3 rounded-lg border transition-colors ${
-          isDark
-            ? 'bg-slate-900 border-slate-800 text-white placeholder-slate-500 focus:border-pink-500 focus:outline-none'
-            : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none'
-        }`}
-      />
+        {/* Phone input */}
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => onPhoneChange(e.target.value)}
+          placeholder="Enter your phone number"
+          className={`flex-1 min-w-0 px-3 sm:px-4 py-3 rounded-lg border transition-colors text-sm sm:text-base ${
+            isDark
+              ? 'bg-slate-900 border-slate-800 text-white placeholder-slate-500 focus:border-pink-500 focus:outline-none'
+              : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none'
+          }`}
+        />
+      </div>
 
       {/* Dropdown menu */}
       {isOpen && (
@@ -150,7 +152,7 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               autoFocus
-              className={`w-full px-4 py-2 rounded-lg border-2 border-pink-500 transition-all ${
+              className={`w-full px-4 py-2 rounded-lg border-2 border-pink-500 transition-all text-sm ${
                 isDark
                   ? 'bg-slate-800 text-white placeholder-slate-500 focus:outline-none'
                   : 'bg-white text-slate-900 placeholder-slate-400 focus:outline-none'
@@ -161,22 +163,22 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
           {/* Country list */}
           <div className={`max-h-64 overflow-y-auto`}>
             {filteredCountries.length > 0 ? (
-              filteredCountries.map((country, index) => (
+              filteredCountries.map((country) => (
                 <button
-                  key={index}
+                  key={country.code + country.name}
                   onClick={() => handleSelectCountry(country.code)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-pink-500 hover:text-white ${
-                    country.code === countryCode
+                  className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors text-sm ${
+                    country.code === countryCode && country === selectedCountry
                       ? 'bg-pink-500 text-white'
                       : isDark
-                      ? 'text-white hover:bg-pink-500'
-                      : 'text-slate-900 hover:bg-pink-500'
+                      ? 'text-white hover:bg-pink-500 hover:text-white'
+                      : 'text-slate-900 hover:bg-pink-500 hover:text-white'
                   }`}
                 >
-                  <span className="text-lg">{country.flag}</span>
-                  <span className="flex-1">{country.name}</span>
-                  <span className="font-semibold">{country.code}</span>
-                  {country.code === countryCode && <span className="text-lg">✓</span>}
+                  <span className="text-lg flex-shrink-0">{country.flag}</span>
+                  <span className="flex-1 min-w-0">{country.name}</span>
+                  <span className="font-semibold flex-shrink-0">{country.code}</span>
+                  {country.code === countryCode && country === selectedCountry && <span className="text-lg flex-shrink-0">✓</span>}
                 </button>
               ))
             ) : (
