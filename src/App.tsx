@@ -5,6 +5,10 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Safety } from './pages/Safety';
 import { Mobile } from './pages/Mobile';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
+import { Cookies } from './pages/Cookies';
+import { Community } from './pages/Community';
 
 export default function App() {
   const { theme } = useTheme();
@@ -21,6 +25,10 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/safety" element={<Safety />} />
         <Route path="/mobile" element={<Mobile />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/community" element={<Community />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>

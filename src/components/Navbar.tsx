@@ -22,12 +22,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb }) => {
     }`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16 sm:h-20 px-1">
         {/* Brand Logo */}
-        <div 
-          className="flex items-center gap-2 cursor-pointer select-none group h-full py-1" 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        <Link
+          to="/"
+          className="flex items-center gap-2 cursor-pointer select-none group h-full py-1"
         >
           <LuukrLogo className="h-12 sm:h-16 max-h-full w-auto object-contain group-hover:scale-105 transition-transform" />
-        </div>
+        </Link>
 
         {/* Navigation Controls */}
         <div className="flex items-center gap-2 sm:gap-4">

@@ -81,36 +81,36 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <a 
-                  href="#privacy"
+                <Link 
+                  to="/privacy"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#terms"
+                <Link 
+                  to="/terms"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#cookies"
+                <Link 
+                  to="/cookies"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Cookie Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  href="#community"
+                <Link 
+                  to="/community"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Community Guidelines
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
