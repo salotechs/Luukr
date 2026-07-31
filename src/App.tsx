@@ -1,53 +1,40 @@
-import React, { useState } from 'react';
-import { DoodleBackground } from './components/DoodleBackground';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { Footer } from './components/Footer';
-import { Modals } from './components/Modals';
-import { WebDiscoveryView } from './components/WebDiscoveryView';
-import { ModalType } from './types';
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useTheme } from './context/ThemeContext';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Safety } from './pages/Safety';
+import { Mobile } from './pages/Mobile';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
+import { Cookies } from './pages/Cookies';
+import { Community } from './pages/Community';
+import { Careers } from './pages/Careers';
+import { Press } from './pages/Press';
 
 export default function App() {
-  const [activeModal, setActiveModal] = useState<ModalType>(null);
-  const [isWebLaunchOpen, setIsWebLaunchOpen] = useState(false);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
   return (
-    <div className={`min-h-screen w-full relative flex flex-col font-sans transition-colors duration-200 overflow-x-clip justify-between ${
+    <div className={`w-full font-sans transition-colors duration-200 overflow-x-clip ${
       isDark 
         ? 'bg-[#060911] text-slate-100 selection:bg-pink-500 selection:text-white' 
         : 'bg-white text-slate-900 selection:bg-black selection:text-white'
     }`}>
-      {/* Header Navigation */}
-      <Navbar onOpenModal={(type) => setActiveModal(type)} />
-
-      {/* Main Landing Content with background image restricted to body section */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full min-h-[calc(100vh-5rem)] overflow-hidden">
-        <DoodleBackground />
-        <Hero
-          onOpenModal={(type) => setActiveModal(type)}
-          onLaunchWeb={() => setIsWebLaunchOpen(true)}
-        />
-      </main>
-
-      {/* Footer */}
-      <Footer 
-        onOpenModal={(type) => setActiveModal(type)} 
-        onLaunchWeb={() => setIsWebLaunchOpen(true)}
-      />
-
-      {/* Web Discovery Application Modal */}
-      {isWebLaunchOpen && (
-        <WebDiscoveryView
-          initialCategory="all"
-          onClose={() => setIsWebLaunchOpen(false)}
-        />
-      )}
-
-      {/* Auth & Info Modals */}
-      <Modals activeModal={activeModal} onClose={() => setActiveModal(null)} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/safety" element={<Safety />} />
+        <Route path="/mobile" element={<Mobile />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/press" element={<Press />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </div>
   );
 }

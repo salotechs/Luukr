@@ -1,15 +1,14 @@
 import React from 'react';
-import { ModalType } from '../types';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon, Facebook, Instagram } from 'lucide-react';
 import { LuukrLogo } from './LuukrLogo';
 
 interface FooterProps {
-  onOpenModal: (type: ModalType) => void;
   onLaunchWeb?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -40,37 +39,37 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <Link 
+                  to="/about" 
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   About Luukr
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <Link 
+                  to="/careers"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left inline-flex items-center gap-1.5 flex-wrap"
                 >
                   <span>Careers</span>
                   <span className="px-1.5 py-0.5 text-[9px] bg-pink-500 text-white rounded font-bold">HIRING</span>
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <Link 
+                  to="/press"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Press & Media Kit
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <Link 
+                  to="/safety" 
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Trust & Safety
-                </button>
+                </Link>
               </li>
             </ul>
           </div>
@@ -82,36 +81,36 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <Link 
+                  to="/privacy"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <Link 
+                  to="/terms"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Terms of Service
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <Link 
+                  to="/cookies"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Cookie Policy
-                </button>
+                </Link>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <Link 
+                  to="/community"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Community Guidelines
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

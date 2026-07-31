@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { ModalType } from '../types';
 import { User, Home, Car, Shirt, Watch, Sparkles, Gem, Compass, Music, Flame, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 interface HeroProps {
-  onOpenModal: (type: ModalType) => void;
   onLaunchWeb: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenModal, onLaunchWeb }) => {
+export const Hero: React.FC<HeroProps> = ({ onLaunchWeb }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -123,7 +121,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal, onLaunchWeb }) => {
           <div className="flex flex-wrap justify-center gap-4">
             {/* Apple Store Button */}
             <button
-              onClick={() => onOpenModal('download')}
+              onClick={() => window.open('https://apps.apple.com/app/luukr', '_blank')}
               className={`btn-store flex items-center gap-3 px-5 py-2.5 rounded-xl transition-all cursor-pointer shadow-md hover:shadow-lg border ${
                 isDark 
                   ? 'bg-slate-900 border-slate-800 text-white hover:bg-slate-800' 
@@ -141,7 +139,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenModal, onLaunchWeb }) => {
 
             {/* Google Play Button */}
             <button
-              onClick={() => onOpenModal('download')}
+              onClick={() => window.open('https://play.google.com/store/apps/details?id=com.luukr', '_blank')}
               className={`btn-store flex items-center gap-3 px-5 py-2.5 rounded-xl transition-all cursor-pointer shadow-md hover:shadow-lg border ${
                 isDark 
                   ? 'bg-slate-900 border-slate-800 text-white hover:bg-slate-800' 
