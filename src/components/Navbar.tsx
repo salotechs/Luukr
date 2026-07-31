@@ -28,9 +28,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <LuukrLogo className="h-12 sm:h-16 max-h-full w-auto object-contain group-hover:scale-105 transition-transform" />
-          <span className="hidden sm:inline-block text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-full bg-pink-500/10 text-pink-500 border border-pink-500/20">
-            v2.0
-          </span>
         </div>
 
         {/* Navigation Controls */}
