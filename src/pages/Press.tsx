@@ -156,20 +156,7 @@ export const Press: React.FC = () => {
             </div>
           </section>
 
-          {/* Brand Info */}
-          <section className={`mt-16 pt-8 border-t ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
-            <h2 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              About Luukr
-            </h2>
-            <div className={`space-y-4 text-base leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-              <p>
-                Luukr is the spatial marketplace and social network connecting people with high-value listings worldwide. Founded in 2026, Luukr revolutionizes how individuals discover, connect with, and transact for luxury items and experiences including penthouses, luxury cars, timepieces, and meaningful social connections.
-              </p>
-              <p>
-                With a mission to create the world's most trusted marketplace for premium experiences, Luukr combines cutting-edge technology with sophisticated design to deliver an unparalleled user experience.
-              </p>
-            </div>
-          </section>
+
         </article>
       </main>
 

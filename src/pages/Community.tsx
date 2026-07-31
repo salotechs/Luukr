@@ -19,11 +19,15 @@ export const Community: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className={`flex flex-col min-h-screen ${
+      isDark 
+        ? 'bg-[#060911] text-slate-100' 
+        : 'bg-white text-slate-900'
+    }`}>
       <Navbar onLaunchWeb={handleLaunchWeb} />
 
       <main className="flex-1 w-full">
-        <section className={`py-16 px-4 sm:px-6 lg:px-8 ${isDark ? 'bg-slate-900' : 'bg-gray-50'}`}>
+        <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <Users className="w-8 h-8 text-pink-500" />
