@@ -4,61 +4,9 @@ import { useTheme } from '../context/ThemeContext';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { PhoneInput } from '../components/PhoneInput';
 
-const COUNTRY_CODES = [
-  { name: 'United States', code: '+1' },
-  { name: 'Canada', code: '+1' },
-  { name: 'Mexico', code: '+52' },
-  { name: 'United Kingdom', code: '+44' },
-  { name: 'Ireland', code: '+353' },
-  { name: 'Germany', code: '+49' },
-  { name: 'France', code: '+33' },
-  { name: 'Spain', code: '+34' },
-  { name: 'Italy', code: '+39' },
-  { name: 'Netherlands', code: '+31' },
-  { name: 'Belgium', code: '+32' },
-  { name: 'Switzerland', code: '+41' },
-  { name: 'Sweden', code: '+46' },
-  { name: 'Norway', code: '+47' },
-  { name: 'Denmark', code: '+45' },
-  { name: 'Finland', code: '+358' },
-  { name: 'Poland', code: '+48' },
-  { name: 'Czech Republic', code: '+420' },
-  { name: 'Austria', code: '+43' },
-  { name: 'Portugal', code: '+351' },
-  { name: 'Greece', code: '+30' },
-  { name: 'Russia', code: '+7' },
-  { name: 'Ukraine', code: '+380' },
-  { name: 'Turkey', code: '+90' },
-  { name: 'Israel', code: '+972' },
-  { name: 'Saudi Arabia', code: '+966' },
-  { name: 'United Arab Emirates', code: '+971' },
-  { name: 'India', code: '+91' },
-  { name: 'Pakistan', code: '+92' },
-  { name: 'Bangladesh', code: '+880' },
-  { name: 'China', code: '+86' },
-  { name: 'Japan', code: '+81' },
-  { name: 'South Korea', code: '+82' },
-  { name: 'Thailand', code: '+66' },
-  { name: 'Vietnam', code: '+84' },
-  { name: 'Singapore', code: '+65' },
-  { name: 'Malaysia', code: '+60' },
-  { name: 'Indonesia', code: '+62' },
-  { name: 'Philippines', code: '+63' },
-  { name: 'Hong Kong', code: '+852' },
-  { name: 'Taiwan', code: '+886' },
-  { name: 'Australia', code: '+61' },
-  { name: 'New Zealand', code: '+64' },
-  { name: 'South Africa', code: '+27' },
-  { name: 'Egypt', code: '+20' },
-  { name: 'Nigeria', code: '+234' },
-  { name: 'Kenya', code: '+254' },
-  { name: 'Brazil', code: '+55' },
-  { name: 'Argentina', code: '+54' },
-  { name: 'Chile', code: '+56' },
-  { name: 'Colombia', code: '+57' },
-  { name: 'Peru', code: '+51' }
-];
+
 
 export const Careers: React.FC = () => {
   const { theme } = useTheme();
@@ -298,36 +246,13 @@ export const Careers: React.FC = () => {
                   <label className={`block text-sm font-semibold mb-2 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                     Phone Number
                   </label>
-                  <div className="flex gap-2">
-                    <select
-                      name="countryCode"
-                      value={formData.countryCode}
-                      onChange={handleChange}
-                      className={`px-4 py-3 rounded-lg border transition-colors ${
-                        isDark
-                          ? 'bg-slate-900 border-slate-800 text-white focus:border-pink-500 focus:outline-none'
-                          : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-pink-500 focus:outline-none'
-                      }`}
-                    >
-                      {COUNTRY_CODES.map((country, index) => (
-                        <option key={index} value={country.code}>
-                          {country.name} {country.code}
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className={`flex-1 px-4 py-3 rounded-lg border transition-colors ${
-                        isDark
-                          ? 'bg-slate-900 border-slate-800 text-white placeholder-slate-500 focus:border-pink-500 focus:outline-none'
-                          : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none'
-                      }`}
-                      placeholder="Enter phone number"
-                    />
-                  </div>
+                  <PhoneInput
+                    countryCode={formData.countryCode}
+                    phone={formData.phone}
+                    onCountryCodeChange={(code) => setFormData({ ...formData, countryCode: code })}
+                    onPhoneChange={(phone) => setFormData({ ...formData, phone })}
+                    isDark={isDark}
+                  />
                 </div>
               </div>
 
