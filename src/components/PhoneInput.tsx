@@ -102,21 +102,21 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex items-stretch gap-3">
       {/* Main input button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg border-2 transition-all text-left ${
+        className={`flex items-center justify-between gap-3 px-4 py-3 rounded-lg border-2 transition-all text-left min-w-fit ${
           isDark
             ? 'bg-slate-900 border-slate-800 text-white hover:border-pink-500 focus:border-pink-500'
             : 'bg-slate-50 border-slate-200 text-slate-900 hover:border-pink-500 focus:border-pink-500'
         }`}
       >
-        <div className="flex items-center gap-2 flex-1 min-w-0">
+        <div className="flex items-center gap-2">
           <span className="text-lg">{selectedCountry.flag}</span>
           <span className="font-semibold whitespace-nowrap">{selectedCountry.code}</span>
         </div>
-        <ChevronDown className={`w-5 h-5 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Phone input */}
@@ -124,8 +124,8 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({
         type="tel"
         value={phone}
         onChange={(e) => onPhoneChange(e.target.value)}
-        placeholder="Enter phone number"
-        className={`w-full px-4 py-3 rounded-lg border transition-colors mt-3 ${
+        placeholder="Enter your phone number"
+        className={`flex-1 px-4 py-3 rounded-lg border transition-colors ${
           isDark
             ? 'bg-slate-900 border-slate-800 text-white placeholder-slate-500 focus:border-pink-500 focus:outline-none'
             : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-pink-500 focus:outline-none'

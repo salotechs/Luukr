@@ -136,6 +136,7 @@ export const Footer: React.FC<FooterProps> = ({ onLaunchWeb }) => {
         {/* Bottom Bar Section */}
         <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 text-slate-500 text-center sm:text-left">
+            <p>© 2026 Luukr Global Inc. All rights reserved.</p>
             <a href="mailto:support@luukr.com" className="hover:text-pink-500 transition-colors">
               support@luukr.com
             </a>
