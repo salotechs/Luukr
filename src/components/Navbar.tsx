@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { ModalType } from '../types';
-import { Compass, Shield, Info, ArrowRight, Sun, Moon, Menu, X, Sparkles, LogIn } from 'lucide-react';
+import { Compass, Shield, Info, ArrowRight, Sun, Moon, Menu, X, Sparkles } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { LuukrLogo } from './LuukrLogo';
 
 interface NavbarProps {
-  onOpenModal: (type: ModalType) => void;
   onLaunchWeb?: () => void;
+  onScrollToSection?: (section: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onLaunchWeb, onScrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -33,9 +32,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
         {/* Navigation Controls */}
         <div className="flex items-center gap-2 sm:gap-4">
           {/* Desktop Quick Links */}
-          <div className="hidden md:flex gap-6 items-center pr-2">
+          <div className="hidden md:flex gap-8 items-center pr-2">
             <button
-              onClick={() => onOpenModal('terms')}
+              onClick={() => onScrollToSection?.('about')}
               className={`text-sm font-semibold transition-colors cursor-pointer ${
                 isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'
               }`}
@@ -43,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
               About
             </button>
             <button
-              onClick={() => onOpenModal('privacy')}
+              onClick={() => onScrollToSection?.('safety')}
               className={`text-sm font-semibold transition-colors cursor-pointer ${
                 isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-slate-900'
               }`}
@@ -59,16 +58,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
                 <span>Web App</span>
               </button>
             )}
-            <button
-              onClick={() => onOpenModal('login')}
-              className={`px-5 py-2 rounded-full font-bold text-sm transition-all cursor-pointer active:scale-95 ${
-                isDark
-                  ? 'border-2 border-white/80 text-white hover:bg-white hover:text-slate-900'
-                  : 'border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white'
-              }`}
-            >
-              Log In
-            </button>
           </div>
 
           {/* Dark / Light Theme Toggle Button */}
@@ -146,7 +135,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
                 className="flex items-center gap-3 p-3.5 rounded-xl pink-gradient text-white font-bold text-sm shadow-md hover:opacity-95 transition-opacity cursor-pointer"
               >
                 <Sparkles className="w-4 h-4" />
-                <span>Launch Web Discovery App</span>
+                <span>Launch Web App</span>
                 <ArrowRight className="w-4 h-4 ml-auto" />
               </button>
             )}
@@ -154,21 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
             <button
               onClick={() => {
                 setIsMenuOpen(false);
-                onOpenModal('login');
-              }}
-              className={`flex items-center gap-3 p-3 rounded-xl font-bold text-sm transition-colors cursor-pointer ${
-                isDark ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-900'
-              }`}
-            >
-              <LogIn className="w-4 h-4 text-pink-500" />
-              <span>Log In / Sign Up</span>
-              <ArrowRight className="w-4 h-4 ml-auto opacity-60" />
-            </button>
-
-            <button
-              onClick={() => {
-                setIsMenuOpen(false);
-                onOpenModal('terms');
+                onScrollToSection?.('about');
               }}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
@@ -181,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
             <button
               onClick={() => {
                 setIsMenuOpen(false);
-                onOpenModal('privacy');
+                onScrollToSection?.('safety');
               }}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'
@@ -194,7 +169,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenModal, onLaunchWeb }) => {
             <button
               onClick={() => {
                 setIsMenuOpen(false);
-                onOpenModal('download');
+                onScrollToSection?.('mobile');
               }}
               className={`flex items-center gap-3 p-3 rounded-xl font-semibold text-sm transition-colors cursor-pointer text-left ${
                 isDark ? 'hover:bg-slate-800/80 text-slate-200' : 'hover:bg-slate-100 text-slate-800'

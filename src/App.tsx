@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DoodleBackground } from './components/DoodleBackground';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -12,8 +12,40 @@ export default function App() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
+  // Smart back button handling - push state when modal opens
+  useEffect(() => {
+    if (activeModal) {
+      // Push a state entry so back button closes modal instead of navigating away
+      window.history.pushState({ modal: activeModal }, '');
+    }
+  }, [activeModal]);
+
+  // Handle browser back button
+  useEffect(() => {
+    const handlePopState = () => {
+      setActiveModal(null);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleLaunchWeb = () => {
     window.location.href = 'https://app.luukr.com';
+  };
+
+  const handleScrollToSection = (section: string) => {
+    // Map section names to modal types
+    const modalMap: Record<string, ModalType> = {
+      about: 'about',
+      safety: 'safety',
+      mobile: 'mobile',
+    };
+
+    const modal = modalMap[section];
+    if (modal) {
+      setActiveModal(modal);
+    }
   };
 
   return (
@@ -23,21 +55,20 @@ export default function App() {
         : 'bg-white text-slate-900 selection:bg-black selection:text-white'
     }`}>
       {/* Header Navigation */}
-      <Navbar onOpenModal={(type) => setActiveModal(type)} onLaunchWeb={handleLaunchWeb} />
+      <Navbar onLaunchWeb={handleLaunchWeb} onScrollToSection={handleScrollToSection} />
 
       {/* Main Landing Content with background image restricted to body section */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center w-full min-h-[calc(100vh-5rem)] overflow-hidden">
         <DoodleBackground />
         <Hero
-          onOpenModal={(type) => setActiveModal(type)}
           onLaunchWeb={handleLaunchWeb}
         />
       </main>
 
       {/* Footer */}
       <Footer 
-        onOpenModal={(type) => setActiveModal(type)} 
         onLaunchWeb={handleLaunchWeb}
+        onScrollToSection={handleScrollToSection}
       />
 
       {/* Auth & Info Modals */}

@@ -5,11 +5,11 @@ import { Sun, Moon, Facebook, Instagram } from 'lucide-react';
 import { LuukrLogo } from './LuukrLogo';
 
 interface FooterProps {
-  onOpenModal: (type: ModalType) => void;
   onLaunchWeb?: () => void;
+  onScrollToSection?: (section: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onScrollToSection }) => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -41,32 +41,32 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
             <ul className="space-y-2 text-xs font-medium">
               <li>
                 <button 
-                  onClick={() => onOpenModal('terms')} 
+                  onClick={() => onScrollToSection?.('about')} 
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   About Luukr
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <a 
+                  href="#careers"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left inline-flex items-center gap-1.5 flex-wrap"
                 >
                   <span>Careers</span>
                   <span className="px-1.5 py-0.5 text-[9px] bg-pink-500 text-white rounded font-bold">HIRING</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <a 
+                  href="#press"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Press & Media Kit
-                </button>
+                </a>
               </li>
               <li>
                 <button 
-                  onClick={() => onOpenModal('privacy')} 
+                  onClick={() => onScrollToSection?.('safety')} 
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Trust & Safety
@@ -82,36 +82,36 @@ export const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <a 
+                  href="#privacy"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Privacy Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <a 
+                  href="#terms"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Terms of Service
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('privacy')} 
+                <a 
+                  href="#cookies"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Cookie Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => onOpenModal('terms')} 
+                <a 
+                  href="#community"
                   className="hover:text-pink-500 transition-colors cursor-pointer text-left"
                 >
                   Community Guidelines
-                </button>
+                </a>
               </li>
             </ul>
           </div>

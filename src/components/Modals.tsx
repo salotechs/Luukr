@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ModalType } from '../types';
-import { X, CheckCircle2, ShieldCheck, QrCode, ArrowRight, Lock, Mail, Smartphone } from 'lucide-react';
+import { X, QrCode, ArrowRight, Smartphone, ShieldCheck, Globe, Users, Zap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 interface ModalsProps {
@@ -9,16 +9,18 @@ interface ModalsProps {
 }
 
 export const Modals: React.FC<ModalsProps> = ({ activeModal, onClose }) => {
-  const [email, setEmail] = useState('');
-  const [submittedLogin, setSubmittedLogin] = useState(false);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
   if (!activeModal) return null;
 
+  const handleBackButton = () => {
+    window.history.back();
+  };
+
   return (
     <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
-      <div className={`rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl border transition-colors duration-200 animate-in fade-in zoom-in duration-200 ${
+      <div className={`rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl border transition-colors duration-200 animate-in fade-in zoom-in duration-200 ${
         isDark ? 'bg-[#0B0F19] border-slate-800 text-white' : 'bg-white border-gray-100 text-slate-900'
       }`}>
         {/* Close Button */}
@@ -31,197 +33,153 @@ export const Modals: React.FC<ModalsProps> = ({ activeModal, onClose }) => {
           <X className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {activeModal === 'login' && (
+        {activeModal === 'about' && (
           <div className="space-y-6 text-left">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 pink-gradient text-white rounded-xl flex items-center justify-center font-black text-xl shadow-md">
-                L
-              </div>
-              <div>
-                <h3 className={`text-2xl font-black tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>Welcome to Luukr</h3>
-                <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>Log in or create your account</p>
-              </div>
+              <Globe className="w-8 h-8 text-pink-500" />
+              <h3 className={`text-3xl font-black tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>About Luukr</h3>
             </div>
 
-            {submittedLogin ? (
-              <div className={`border rounded-2xl p-6 text-center space-y-3 ${
-                isDark ? 'bg-emerald-950/40 border-emerald-800/80 text-emerald-300' : 'bg-emerald-50 border-emerald-200 text-emerald-900'
-              }`}>
-                <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto" />
-                <h4 className="font-extrabold text-lg">Check your email</h4>
-                <p className="text-xs leading-relaxed">
-                  We sent a magic sign-in link to <strong>{email}</strong>. Click the link to complete authentication.
-                </p>
-                <button
-                  onClick={() => setSubmittedLogin(false)}
-                  className="text-xs font-bold underline cursor-pointer hover:opacity-80"
-                >
-                  Use another email address
-                </button>
-              </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (email) setSubmittedLogin(true);
-                }}
-                className="space-y-4"
-              >
-                <div>
-                  <label className={`block text-xs font-bold mb-1.5 uppercase tracking-wider ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
-                    Email address
-                  </label>
-                  <div className="relative">
-                    <Mail className="w-4 h-4 text-gray-400 absolute left-3.5 top-3.5" />
-                    <input
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="alex@example.com"
-                      className={`w-full pl-10 pr-4 py-3 border rounded-xl text-sm font-medium focus:outline-none focus:border-pink-500 ${
-                        isDark ? 'bg-slate-900 border-slate-700 text-white placeholder-slate-500' : 'bg-gray-50 border-gray-200 text-black'
-                      }`}
-                    />
-                  </div>
-                </div>
+            <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+              Luukr is the spatial marketplace and social network connecting people with high-value listings worldwide. We believe that discovering meaningful connections and premium experiences should be seamless, secure, and sophisticated.
+            </p>
 
-                <button
-                  type="submit"
-                  className="w-full py-3.5 pink-gradient-glow text-white text-sm font-bold rounded-xl shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
-                >
-                  <span>Continue with Magic Link</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <div className="relative flex py-2 items-center">
-                  <div className={`flex-grow border-t ${isDark ? 'border-slate-800' : 'border-gray-200'}`} />
-                  <span className="shrink mx-3 text-[11px] text-gray-400 font-bold uppercase">or</span>
-                  <div className={`flex-grow border-t ${isDark ? 'border-slate-800' : 'border-gray-200'}`} />
-                </div>
-
-                <div className="space-y-2">
-                  <button
-                    type="button"
-                    onClick={() => setSubmittedLogin(true)}
-                    className={`w-full py-3 border rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer ${
-                      isDark ? 'border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200' : 'border-gray-200 hover:bg-gray-50 text-gray-800'
-                    }`}
-                  >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24">
-                      <path
-                        fill="#4285F4"
-                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                      />
-                      <path
-                        fill="#34A853"
-                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                      />
-                      <path
-                        fill="#FBBC05"
-                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
-                      />
-                      <path
-                        fill="#EA4335"
-                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
-                      />
-                    </svg>
-                    <span>Continue with Google</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setSubmittedLogin(true)}
-                    className={`w-full py-3 border rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer ${
-                      isDark ? 'border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200' : 'border-gray-200 hover:bg-gray-50 text-gray-800'
-                    }`}
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .76-3.27.82-1.31.05-2.31-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.23-1.93 1.09-3.04-1.01.04-2.2.61-2.91 1.4-.63.71-1.2 1.83-1.05 2.9 1.12.09 2.19-.51 2.87-1.26z" />
-                    </svg>
-                    <span>Continue with Apple</span>
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
-        )}
-
-        {activeModal === 'download' && (
-          <div className="text-center space-y-6">
-            <div className="w-12 h-12 pink-gradient text-white rounded-2xl mx-auto flex items-center justify-center font-black text-2xl shadow-md">
-              L
-            </div>
-            <div>
-              <h3 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-black'}`}>Get Luukr Mobile App</h3>
-              <p className={`text-xs font-medium mt-1 ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
-                Scan with your phone camera to download instantly for iOS and Android
+            <div className="space-y-4 pt-2">
+              <h4 className={`font-bold text-lg ${isDark ? 'text-white' : 'text-black'}`}>Our Mission</h4>
+              <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                To create the world&apos;s most trusted marketplace for luxury real estate, penthouses, luxury cars, timepieces, and meaningful social connections. We empower users to discover, connect, and transact with confidence.
               </p>
             </div>
 
-            {/* QR Code Container */}
-            <div className={`border-2 border-dashed rounded-2xl p-6 inline-block mx-auto shadow-inner ${
+            <div className="space-y-4 pt-2">
+              <h4 className={`font-bold text-lg ${isDark ? 'text-white' : 'text-black'}`}>What We Offer</h4>
+              <ul className={`text-sm leading-relaxed space-y-2 ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Discovery marketplace for luxury properties and items</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Real-time messaging and social networking features</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Verified user profiles with identity verification</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Secure transaction infrastructure</li>
+              </ul>
+            </div>
+
+            <div className="pt-4 border-t border-slate-800/30">
+              <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+                Luukr Global Inc. © 2026. All rights reserved.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'safety' && (
+          <div className="space-y-6 text-left">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="w-8 h-8 text-pink-500" />
+              <h3 className={`text-3xl font-black tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>Safety & Security</h3>
+            </div>
+
+            <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+              At Luukr, your safety and security are our highest priorities. We implement comprehensive security measures across our platform to protect users and ensure trust.
+            </p>
+
+            <div className="space-y-4 pt-2">
+              <h4 className={`font-bold text-lg ${isDark ? 'text-white' : 'text-black'}`}>Our Security Standards</h4>
+              <ul className={`text-sm leading-relaxed space-y-3 ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                <li className="flex gap-3">
+                  <span className="text-pink-500 font-bold mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold">Identity Verification</p>
+                    <p className="text-xs opacity-80">All users undergo verified identity checks to prevent fraud and impersonation.</p>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-pink-500 font-bold mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold">Encrypted Communications</p>
+                    <p className="text-xs opacity-80">All messages and transactions are encrypted end-to-end for maximum privacy.</p>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-pink-500 font-bold mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold">Fraud Prevention</p>
+                    <p className="text-xs opacity-80">Advanced AI systems monitor activity to detect and prevent fraudulent behavior.</p>
+                  </div>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-pink-500 font-bold mt-1">✓</span>
+                  <div>
+                    <p className="font-semibold">24/7 Trust & Safety Team</p>
+                    <p className="text-xs opacity-80">Our dedicated team responds to reports and ensures community standards are maintained.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="space-y-4 pt-2">
+              <h4 className={`font-bold text-lg ${isDark ? 'text-white' : 'text-black'}`}>Community Guidelines</h4>
+              <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                We maintain strict community standards prohibiting harassment, discrimination, illegal activity, and misrepresentation. Violations result in immediate account suspension.
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-slate-800/30">
+              <p className={`text-xs font-medium ${isDark ? 'text-slate-400' : 'text-gray-500'}`}>
+                For safety concerns, please contact our Trust & Safety team.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {activeModal === 'mobile' && (
+          <div className="space-y-6 text-left">
+            <div className="flex items-center gap-3">
+              <Smartphone className="w-8 h-8 text-pink-500" />
+              <h3 className={`text-3xl font-black tracking-tight ${isDark ? 'text-white' : 'text-black'}`}>Get Luukr Mobile App</h3>
+            </div>
+
+            <p className={`text-sm leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+              Experience Luukr on the go with our mobile apps for iOS and Android. Discover luxury listings, connect with others, and manage your account seamlessly.
+            </p>
+
+            <div className="space-y-4 pt-4">
+              <h4 className={`font-bold text-lg ${isDark ? 'text-white' : 'text-black'}`}>App Features</h4>
+              <ul className={`text-sm leading-relaxed space-y-2 ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Real-time discovery notifications for new listings</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Push notifications for messages and matches</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Biometric login for enhanced security</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Location-based discovery matching</li>
+                <li className="flex gap-2"><span className="text-pink-500 font-bold">•</span> Video call integration for secure connections</li>
+              </ul>
+            </div>
+
+            <div className={`border-2 border-dashed rounded-2xl p-6 shadow-inner ${
               isDark ? 'bg-slate-900 border-slate-700' : 'bg-gray-50 border-gray-200'
             }`}>
-              <div className="w-44 h-44 bg-white p-3 rounded-xl border border-gray-200 shadow-sm flex flex-col items-center justify-center gap-2">
-                <QrCode className="w-32 h-32 text-black" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                  SCAN TO DOWNLOAD
-                </span>
+              <div className="text-center">
+                <p className={`text-sm font-bold mb-3 ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
+                  Scan this QR code to download
+                </p>
+                <div className="w-40 h-40 bg-white p-3 rounded-lg border border-gray-200 shadow-sm flex items-center justify-center mx-auto">
+                  <QrCode className="w-28 h-28 text-black" />
+                </div>
               </div>
             </div>
 
-            <div className="flex justify-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button
-                onClick={() => alert('Redirecting to Apple App Store...')}
-                className="px-4 py-2 pink-gradient text-white text-xs font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer shadow-md"
+                onClick={() => window.open('https://apps.apple.com/app/luukr', '_blank')}
+                className="flex-1 px-4 py-3 pink-gradient text-white text-sm font-bold rounded-xl hover:opacity-90 transition-opacity cursor-pointer shadow-md"
               >
                 App Store
               </button>
               <button
-                onClick={() => alert('Redirecting to Google Play Store...')}
-                className={`px-4 py-2 text-xs font-bold rounded-xl border transition-colors cursor-pointer ${
+                onClick={() => window.open('https://play.google.com/store/apps/details?id=com.luukr', '_blank')}
+                className={`flex-1 px-4 py-3 text-sm font-bold rounded-xl border transition-colors cursor-pointer ${
                   isDark ? 'bg-slate-800 border-slate-700 text-white hover:bg-slate-700' : 'bg-black text-white hover:bg-gray-800'
                 }`}
               >
                 Google Play
               </button>
             </div>
-          </div>
-        )}
-
-        {activeModal === 'privacy' && (
-          <div className="text-left space-y-4 max-h-[70vh] overflow-y-auto pr-1">
-            <h3 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-black'}`}>Privacy Policy</h3>
-            <p className={`text-xs leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
-              At Luukr, we prioritize your data privacy, safety, and security. We process user data strictly to operate our discovery matching platform, real-time messaging services, and account security.
-            </p>
-            <h4 className={`font-bold text-sm ${isDark ? 'text-white' : 'text-black'}`}>1. Data We Collect</h4>
-            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
-              Account credentials, location coordinates (if permitted for location-based matching), profile preferences, and communication logs.
-            </p>
-            <h4 className={`font-bold text-sm ${isDark ? 'text-white' : 'text-black'}`}>2. How We Use Data</h4>
-            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
-              Data is used exclusively to facilitate personalized matches, enforce community safety standards, and prevent fraudulent activity.
-            </p>
-            <p className="text-xs text-gray-400 pt-2 font-mono">Last updated: July 2026</p>
-          </div>
-        )}
-
-        {activeModal === 'terms' && (
-          <div className="text-left space-y-4 max-h-[70vh] overflow-y-auto pr-1">
-            <h3 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-black'}`}>Terms of Service</h3>
-            <p className={`text-xs leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
-              By accessing or using the Luukr platform, app, or website, you agree to comply with our community standards and terms.
-            </p>
-            <h4 className={`font-bold text-sm ${isDark ? 'text-white' : 'text-black'}`}>1. User Verification & Conduct</h4>
-            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
-              Users must be at least 18 years old. Misrepresentation, spam, harassment, or unlawful trade on Luukr is strictly prohibited and results in immediate account suspension.
-            </p>
-            <h4 className={`font-bold text-sm ${isDark ? 'text-white' : 'text-black'}`}>2. Transactions & Communications</h4>
-            <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-gray-600'}`}>
-              Luukr provides discovery and communication tools. Users are encouraged to verify real estate, vehicle, and fashion items independently.
-            </p>
-            <p className="text-xs text-gray-400 pt-2 font-mono">© 2026 Luukr Global Inc.</p>
           </div>
         )}
       </div>
