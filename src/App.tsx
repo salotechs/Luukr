@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useTheme } from './context/ThemeContext';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -12,6 +12,7 @@ import { Community } from './pages/Community';
 import { Careers } from './pages/Careers';
 import { Press } from './pages/Press';
 import { Contact } from './pages/Contact';
+import { NotFound } from './pages/NotFound';
 
 export default function App() {
   const { theme } = useTheme();
@@ -35,7 +36,7 @@ export default function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/cookies" element={<Cookies />} />
         <Route path="/community" element={<Community />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
