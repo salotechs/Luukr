@@ -104,10 +104,6 @@ export const Terms: React.FC = () => {
               <p className={`text-base leading-relaxed mb-6 ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
                 Luukr reserves the right to modify these Terms of Service at any time. Continued use of the platform after changes constitutes acceptance of the updated terms.
               </p>
-
-              <p className={`text-base leading-relaxed mt-8 ${isDark ? 'text-slate-400' : 'text-gray-600'}`}>
-                © 2026 Luukr Global Inc. All rights reserved.
-              </p>
             </div>
           </div>
         </section>
