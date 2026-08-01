@@ -27,13 +27,13 @@ export const DoodleBackground: React.FC = () => {
             alt=""
             onError={handleError}
             className={`w-[240%] h-[240%] sm:w-[280%] sm:h-[280%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
-              isDark ? 'opacity-60 brightness-100 contrast-125' : 'opacity-40 brightness-125 contrast-90'
+              isDark ? 'opacity-45 brightness-110 contrast-110' : 'opacity-40 brightness-125 contrast-90'
             }`}
           />
           {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
           <div className={`absolute inset-0 transition-colors duration-300 ${
             isDark 
-              ? 'bg-gradient-to-b from-[#060911]/50 via-[#060911]/30 to-[#060911]/65' 
+              ? 'bg-gradient-to-b from-[#060911]/60 via-[#060911]/40 to-[#060911]/70' 
               : 'bg-gradient-to-b from-slate-50/70 via-slate-100/40 to-white/60'
           }`} />
         </div>
@@ -48,14 +48,14 @@ export const DoodleBackground: React.FC = () => {
       {/* Top overlay: fades from background color to transparent */}
       <div className={`fixed top-0 left-0 right-0 h-24 sm:h-32 md:h-40 lg:h-48 pointer-events-none transition-colors duration-300 z-10 ${
         isDark 
-          ? 'bg-gradient-to-b from-[#060911] via-[#060911]/50 to-transparent'
+          ? 'bg-gradient-to-b from-[#060911] via-[#060911]/40 to-transparent'
           : 'bg-gradient-to-b from-slate-50 via-slate-50/40 to-transparent'
       }`} />
 
       {/* Bottom overlay: fades from transparent to background color */}
       <div className={`fixed bottom-0 left-0 right-0 h-24 sm:h-32 md:h-40 lg:h-48 pointer-events-none transition-colors duration-300 z-10 ${
         isDark 
-          ? 'bg-gradient-to-t from-[#060911] via-[#060911]/50 to-transparent'
+          ? 'bg-gradient-to-t from-[#060911] via-[#060911]/40 to-transparent'
           : 'bg-gradient-to-t from-slate-50 via-slate-50/40 to-transparent'
       }`} />
     </div>
