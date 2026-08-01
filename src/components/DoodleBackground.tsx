@@ -29,6 +29,14 @@ export const DoodleBackground: React.FC = () => {
             className={`w-[240%] h-[240%] sm:w-[280%] sm:h-[280%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
               isDark ? 'opacity-60 brightness-100 contrast-125' : 'opacity-75 brightness-105 contrast-105'
             }`}
+            style={{
+              maskImage: isDark
+                ? 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)'
+                : 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage: isDark
+                ? 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)'
+                : 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
+            }}
           />
           {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
           <div className={`absolute inset-0 transition-colors duration-300 ${
