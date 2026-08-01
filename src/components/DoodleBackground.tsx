@@ -20,32 +20,22 @@ export const DoodleBackground: React.FC = () => {
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
       {!bgFailed ? (
-        <div 
-          className="fixed inset-0 overflow-hidden"
-          style={{
-            backgroundImage: `url('${bgSrc}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-            width: '100vw',
-            height: '100vh',
-          }}
-        >
-          {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
-          <div className={`absolute inset-0 w-full h-full transition-colors duration-300 ${
-            isDark 
-              ? 'bg-gradient-to-b from-[#060911]/50 via-[#060911]/30 to-[#060911]/65' 
-              : 'bg-gradient-to-b from-white/40 via-white/15 to-white/50'
-          }`} />
-          
-          {/* Fallback image element for cases where CSS background fails */}
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
+          {/* Enlarged background image to ensure full coverage on all screen sizes */}
           <img
             src={bgSrc}
             alt=""
             onError={handleError}
-            className="hidden"
+            className={`absolute w-[300%] h-[300%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
+              isDark ? 'opacity-60 brightness-100 contrast-125' : 'opacity-75 brightness-105 contrast-105'
+            }`}
           />
+          {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
+          <div className={`absolute inset-0 transition-colors duration-300 ${
+            isDark 
+              ? 'bg-gradient-to-b from-[#060911]/50 via-[#060911]/30 to-[#060911]/65' 
+              : 'bg-gradient-to-b from-white/40 via-white/15 to-white/50'
+          }`} />
         </div>
       ) : (
         <div className={`w-full h-full ${
