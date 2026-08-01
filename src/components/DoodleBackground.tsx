@@ -21,12 +21,15 @@ export const DoodleBackground: React.FC = () => {
     <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
       {!bgFailed ? (
         <div 
-          className="absolute inset-0 w-full h-full overflow-hidden"
+          className="fixed inset-0 overflow-hidden"
           style={{
             backgroundImage: `url('${bgSrc}')`,
-            backgroundSize: 'auto',
-            backgroundPosition: 'top left',
-            backgroundRepeat: 'repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            width: '100vw',
+            height: '100vh',
           }}
         >
           {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
