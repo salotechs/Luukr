@@ -21,12 +21,12 @@ export const DoodleBackground: React.FC = () => {
     <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
       {!bgFailed ? (
         <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
-          {/* Enlarged background image to ensure full coverage on all screen sizes */}
+          {/* Enlarged background image to ensure full coverage on all screen sizes including large laptop screens */}
           <img
             src={bgSrc}
             alt=""
             onError={handleError}
-            className={`absolute w-[300%] h-[300%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
+            className={`absolute w-[400%] h-[400%] sm:w-[350%] sm:h-[350%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
               isDark ? 'opacity-60 brightness-100 contrast-125' : 'opacity-75 brightness-105 contrast-105'
             }`}
           />
