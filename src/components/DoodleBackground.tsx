@@ -6,7 +6,7 @@ export const DoodleBackground: React.FC = () => {
   const fallbackBgUrl = 'https://drive.google.com/uc?export=view&id=1yXNDspW4pAlrvmBanljQL7ogSTHGmuUL';
   const [bgSrc, setBgSrc] = useState(primaryBgUrl);
   const [bgFailed, setBgFailed] = useState(false);
-  const [maskGradient, setMaskGradient] = useState('');
+  const [maskStyle, setMaskStyle] = useState<React.CSSProperties>({});
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -18,41 +18,53 @@ export const DoodleBackground: React.FC = () => {
     }
   };
 
-  // Calculate responsive mask gradient based on viewport height
+  // Calculate responsive mask based on viewport dimensions - smart and adaptive
   useEffect(() => {
-    const calculateMaskGradient = () => {
-      const viewportHeight = window.innerHeight;
-      // Mobile: blend ~15% top/bottom, Tablet: ~12%, Desktop: ~10%
-      let topBlendPercent = 15;
-      let bottomBlendPercent = 15;
-
-      if (window.innerWidth >= 1024) {
-        topBlendPercent = 10;
-        bottomBlendPercent = 10;
-      } else if (window.innerWidth >= 768) {
-        topBlendPercent = 12;
-        bottomBlendPercent = 12;
+    const calculateMask = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      // Adaptive blend percentages based on screen size
+      let topPercent = 20;    // mobile
+      let bottomPercent = 20; // mobile
+      
+      if (width >= 1024) {
+        // Desktop: smaller blend needed
+        topPercent = 12;
+        bottomPercent = 12;
+      } else if (width >= 768) {
+        // Tablet: medium blend
+        topPercent = 16;
+        bottomPercent = 16;
       }
-
-      const topStop = topBlendPercent;
-      const bottomStart = 100 - bottomBlendPercent;
-
+      
+      // Create a mask that fades out at top and bottom
       const gradient = `linear-gradient(to bottom, 
         transparent 0%, 
-        rgba(0, 0, 0, 1) ${topStop}%, 
-        rgba(0, 0, 0, 1) ${bottomStart}%, 
+        black ${topPercent}%, 
+        black ${100 - bottomPercent}%, 
         transparent 100%)`;
-
-      setMaskGradient(gradient);
+      
+      setMaskStyle({
+        maskImage: gradient,
+        WebkitMaskImage: gradient,
+        maskSize: '100% 100%',
+        WebkitMaskSize: '100% 100%',
+        maskRepeat: 'no-repeat',
+        WebkitMaskRepeat: 'no-repeat',
+      });
     };
 
-    calculateMaskGradient();
-    window.addEventListener('resize', calculateMaskGradient);
-    return () => window.removeEventListener('resize', calculateMaskGradient);
+    calculateMask();
+    window.addEventListener('resize', calculateMask);
+    return () => window.removeEventListener('resize', calculateMask);
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
+    <div 
+      className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden"
+      style={maskStyle}
+    >
       {!bgFailed ? (
         <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
           {/* Full responsive background image enlarged and centered to cover the body area */}
@@ -60,10 +72,6 @@ export const DoodleBackground: React.FC = () => {
             src={bgSrc}
             alt=""
             onError={handleError}
-            style={{
-              maskImage: maskGradient,
-              WebkitMaskImage: maskGradient,
-            }}
             className={`w-[240%] h-[240%] sm:w-[280%] sm:h-[280%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
               isDark ? 'opacity-60 brightness-100 contrast-125' : 'opacity-75 brightness-105 contrast-105'
             }`}
