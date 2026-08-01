@@ -24,10 +24,9 @@ export const DoodleBackground: React.FC = () => {
           className="absolute inset-0 w-full h-full overflow-hidden"
           style={{
             backgroundImage: `url('${bgSrc}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
+            backgroundSize: 'auto',
+            backgroundPosition: 'top left',
+            backgroundRepeat: 'repeat',
           }}
         >
           {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
