@@ -20,22 +20,30 @@ export const DoodleBackground: React.FC = () => {
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
       {!bgFailed ? (
-        <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-          {/* Full responsive background image enlarged and centered to cover the body area */}
-          <img
-            src={bgSrc}
-            alt=""
-            onError={handleError}
-            className={`w-[240%] h-[240%] sm:w-[280%] sm:h-[280%] max-w-none max-h-none object-cover object-center transition-all duration-300 ${
-              isDark ? 'opacity-60 brightness-100 contrast-125' : 'opacity-75 brightness-105 contrast-105'
-            }`}
-          />
+        <div 
+          className="absolute inset-0 w-full h-full overflow-hidden"
+          style={{
+            backgroundImage: `url('${bgSrc}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+          }}
+        >
           {/* Soft ambient gradient overlay allowing background people image to show edge-to-edge */}
-          <div className={`absolute inset-0 transition-colors duration-300 ${
+          <div className={`absolute inset-0 w-full h-full transition-colors duration-300 ${
             isDark 
               ? 'bg-gradient-to-b from-[#060911]/50 via-[#060911]/30 to-[#060911]/65' 
               : 'bg-gradient-to-b from-white/40 via-white/15 to-white/50'
           }`} />
+          
+          {/* Fallback image element for cases where CSS background fails */}
+          <img
+            src={bgSrc}
+            alt=""
+            onError={handleError}
+            className="hidden"
+          />
         </div>
       ) : (
         <div className={`w-full h-full ${
