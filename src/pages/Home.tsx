@@ -1,5 +1,5 @@
 import React from 'react';
-import { DoodleBackground } from '../components/DoodleBackground';
+import { NeonBackground } from '../components/NeonBackground';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { Footer } from '../components/Footer';
@@ -23,7 +23,7 @@ export const Home: React.FC<HomeProps> = () => {
       <Navbar onLaunchWeb={handleLaunchWeb} />
       
       <main className="flex-1 relative z-10 flex flex-col items-center justify-center w-full min-h-[calc(100vh-5rem)] overflow-hidden">
-        <DoodleBackground />
+        <NeonBackground />
         <Hero onLaunchWeb={handleLaunchWeb} />
       </main>
       

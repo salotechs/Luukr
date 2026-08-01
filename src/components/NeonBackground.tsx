@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
-export const DoodleBackground: React.FC = () => {
-  const primaryBgUrl = 'https://lh3.googleusercontent.com/d/1yXNDspW4pAlrvmBanljQL7ogSTHGmuUL';
-  const fallbackBgUrl = 'https://drive.google.com/uc?export=view&id=1yXNDspW4pAlrvmBanljQL7ogSTHGmuUL';
+export const NeonBackground: React.FC = () => {
+  const primaryBgUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jul%2031%2C%202026%2C%2011_30_53%20AM-yi9ujXcbge0jLnsOSS7u0y09wr8s7X.png';
+  const fallbackBgUrl = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Jul%2031%2C%202026%2C%2011_30_53%20AM-yi9ujXcbge0jLnsOSS7u0y09wr8s7X.png';
   const [bgSrc, setBgSrc] = useState(primaryBgUrl);
   const [bgFailed, setBgFailed] = useState(false);
   const { theme } = useTheme();
